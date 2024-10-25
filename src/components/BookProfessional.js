@@ -113,7 +113,7 @@
 
 // src/components/BookProfessional.js
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { auth } from '../firebaseConfig'; // Import Firebase auth
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 import userProfile from '../assets/user-placeholder.png.webp';
@@ -233,6 +233,16 @@ const BookProfessional = () => {
                     </form>
                 </main>
             </div>
+
+            <footer className="footer">
+            <div className="footer-links">
+                <Link to="/FAQsCustomers">FAQs for Customers</Link>
+                <Link to="/FAQsProviders">FAQs for Providers</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/privacy">Privacy Policy</Link>
+            </div>
+            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
+            </footer>
         </>
     );
 };

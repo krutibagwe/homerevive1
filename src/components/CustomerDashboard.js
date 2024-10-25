@@ -203,7 +203,7 @@
 // src/components/CustomerDashboard.js
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate
 import { getAuth, signOut } from "firebase/auth"; // Import Firebase auth and signOut function
 import './CustomerDashboard.css'; 
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
@@ -419,6 +419,16 @@ const CustomerDashboard = () => {
             ))}
         </div>
       )}
+
+<footer className="footer">
+            <div className="footer-links">
+                <Link to="/FAQsCustomers">FAQs for Customers</Link>
+                <Link to="/FAQsProviders">FAQs for Providers</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/privacy">Privacy Policy</Link>
+            </div>
+            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
+            </footer>
     </div>
   );
 };

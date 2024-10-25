@@ -201,7 +201,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './CustomerHomePage.css';
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
 import userProfile from '../assets/user-placeholder.png.webp'; 
 import { auth, db } from '../firebaseConfig'; // Import auth and db from Firebase
 import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
@@ -307,6 +307,15 @@ const CustomerHomePage = () => {
           </div>
         </div>
       </div>
+      <footer className="footer">
+            <div className="footer-links">
+                <Link to="/FAQsCustomers">FAQs for Customers</Link>
+                <Link to="/FAQsProviders">FAQs for Providers</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/privacy">Privacy Policy</Link>
+            </div>
+            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
+            </footer>
     </div>
   );
 };
