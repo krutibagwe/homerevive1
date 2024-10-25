@@ -1,4 +1,4 @@
-/* src/components/BookingSummary.css */
+/* src/components/BookingProfessional.css */
 
 /* Global Settings */
 body {
@@ -8,12 +8,11 @@ body {
     background-color: #f4f4f4; /* Same as previous for consistency */
 }
 
-/* Booking Summary Component */
-.booking-summary {
+/* Booking Professional Component */
+.booking-professional {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 20px;
 }
 
 /* Header */
@@ -22,6 +21,7 @@ body {
     color: white;
     padding: 15px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
@@ -43,6 +43,69 @@ body {
     font-weight: bold;
 }
 
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin: 0 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    color: #e0e0e0;
+}
+
+/* Profile Dropdown */
+.profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-dropdown li {
+    padding: 8px 0;
+    cursor: pointer;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.profile-dropdown li:hover {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
 /* Main Content */
 main {
     flex: 1; /* Allows main to take remaining space */
@@ -52,40 +115,6 @@ main {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #0B1C3E; /* Dark blue color */
-    margin-bottom: 15px;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #0B1C3E;
-    margin-top: 20px;
-}
-
-/* Provider List */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Divider between items */
-    transition: background-color 0.3s;
-}
-
-li:hover {
-    background-color: #f0f0f0; /* Highlight on hover */
-}
-
-/* Loading and Error Messages */
-p {
-    color: #666; /* Medium gray for text */
-    line-height: 1.5; /* Increased line height */
-}
-
 /* Footer */
 .footer {
     padding: 15px;
@@ -93,4 +122,47 @@ p {
     background-color: #0B1C3E;
     color: white;
     position: relative;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Button Styles */
+.book-professional-button {
+    background-color: #0B1C3E; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-professional-button:hover {
+    background-color: #5a5a5a; /* Darker on hover */
+}
+
+/* Additional Styles for Sub-services */
+.sub-services-list {
+    margin-top: 20px;
+}
+
+.sub-service-card {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Background color for the card */
+    border: 1px solid #ddd; /* Light border */
+    transition: background-color 0.3s;
+}
+
+.sub-service-card:hover {
+    background-color: #e0e0e0; /* Change background on hover */
+}
+
+.sub-service-info {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #0B1C3E; /* Price color */
 }
