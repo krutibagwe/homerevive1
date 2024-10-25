@@ -8,9 +8,12 @@ const FAQsCustomers = () => {
   return (
     <div className="faqs-container">
       <header className="navbar">
-        <div className="logo-container">
-          <h1>Home Revive</h1>
-        </div>
+      <div className="logo-container">
+      <h1 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 'bold' }}>
+          Home Revive
+      </h1>
+    </div>
+
         <nav>
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/services" className="nav-link">Contact</Link>
