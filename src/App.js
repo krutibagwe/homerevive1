@@ -23,6 +23,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import ContactUs from './components/ContactUs';
 import AboutUs from './components/AboutUs';
 import BookingSummary from './components/BookingSummary';
+import AvailableProviders from './components/AvailableProviders';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/Contact" element={<ContactUs />} />
         <Route path="/About" element={<AboutUs />} />
         <Route path="/booking-summary" element={<BookingSummary />} />
+        <Route path="/available-providers" element={<AvailableProviders />} />
       </Routes>
     </Router>
   );

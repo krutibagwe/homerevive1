@@ -146,12 +146,12 @@ const BookProfessional = () => {
 
     const handleBooking = (e) => {
         e.preventDefault();
-        console.log(`Booked ${selectedService.title} on ${bookingDate} at ${bookingTime}`);
-
-        // Navigate to a new page with the UID and pincode
-        navigate('/booking-summary', { state: { userUid, pincode } });
+        console.log(`Finding professionals in pincode ${pincode}`);
+    
+        // Navigate to AvailableProviders component, passing the pincode as state
+        navigate('/available-providers', { state: { pincode } });
     };
-
+    
     const generateTimeOptions = () => {
         const options = [];
         for (let hour = 8; hour <= 22; hour++) {
@@ -233,7 +233,6 @@ const BookProfessional = () => {
                     </form>
                 </main>
             </div>
-
             <footer className="footer">
             <div className="footer-links">
                 <Link to="/FAQsCustomers">FAQs for Customers</Link>
@@ -241,14 +240,12 @@ const BookProfessional = () => {
                 <Link to="/terms">Terms of Service</Link>
                 <Link to="/privacy">Privacy Policy</Link>
             </div>
-            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
             </footer>
         </>
     );
 };
 
 export default BookProfessional;
-
 
 // // src/components/BookProfessional.js
 // import React, { useState, useEffect } from 'react';
