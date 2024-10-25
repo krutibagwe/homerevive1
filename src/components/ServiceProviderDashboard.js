@@ -270,7 +270,7 @@
 
 // src/components/ServiceProviderDashboard.js
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link  } from 'react-router-dom';
 import { db, auth } from '../firebaseConfig';
 import './ServiceProviderDashboard.css';
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
@@ -509,6 +509,16 @@ const ServiceProviderDashboard = () => {
           <button>Edit Profile</button>
         </div>
       )}
+
+            <footer className="footer">
+            <div className="footer-links">
+                <Link to="/FAQsCustomers">FAQs for Customers</Link>
+                <Link to="/FAQsProviders">FAQs for Providers</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/privacy">Privacy Policy</Link>
+            </div>
+            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
+            </footer>
     </div>
   );
 };
