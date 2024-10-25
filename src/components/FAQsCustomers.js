@@ -2,22 +2,24 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 // import './FAQs.css';
 
 const FAQsCustomers = () => {
   return (
     <div className="faqs-container">
       <header className="navbar">
-      <div className="logo-container">
-      <h1 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 'bold' }}>
-          Home Revive
-      </h1>
-    </div>
-
+        <div className="logo-container">
+          <img src={homeReviveLogo} alt="Home Revive Logo" className="logo large" />
+          <div className="description">
+            <h1>Home Revive</h1>
+            <p>Connecting Local Professionals with Customers for Fast and Reliable Home Repairs</p>
+          </div>
+        </div>
         <nav>
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/services" className="nav-link">Contact</Link>
-          <Link to="/join" className="nav-link">About Us</Link>
+          <Link to="/contact" className="nav-link">Contact Us</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
           <Link to="/login-signup" className="nav-link">Login/Signup</Link>
         </nav>
       </header>
