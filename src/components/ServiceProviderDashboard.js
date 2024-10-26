@@ -517,7 +517,6 @@ const ServiceProviderDashboard = () => {
                 <Link to="/terms">Terms of Service</Link>
                 <Link to="/privacy">Privacy Policy</Link>
             </div>
-            <p className="footer-copy">&copy; 2024 Home Revive. All rights reserved.</p>
             </footer>
     </div>
   );
