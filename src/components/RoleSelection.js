@@ -9,31 +9,6 @@ const RoleSelection = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  const toggleProfileDropdown = () => {
-    setShowDropdown((prev) => !prev);
-  };
-
-  const handleLogoutClick = async () => {
-    try {
-      await auth.signOut();
-      navigate('/');
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   const handleSelection = (role) => {
     navigate(`/${role}-login-signup`);
@@ -46,21 +21,8 @@ const RoleSelection = () => {
           <span className="logo-text">Home Revive</span>
         </div>
         <div className="nav">
-          <div className="nav-item" onClick={() => navigate('/customer-home')}>Home</div>
+          <div className="nav-item" onClick={() => navigate('/')}>Home</div>
           <div className="nav-item" onClick={() => navigate('/support')}>Support</div>
-          <div className="profile" onClick={toggleProfileDropdown}>
-            <img src={userProfile} alt="Profile" />
-            <span className="profile-name">My Profile</span>
-          </div>
-          {showDropdown && (
-            <div className="profile-dropdown active" ref={dropdownRef}>
-              <ul>
-                <li onClick={() => navigate('/profile')}>View Profile</li>
-                <li onClick={() => navigate('/account-settings')}>Account Settings</li>
-                <li onClick={handleLogoutClick}>Logout</li>
-              </ul>
-            </div>
-          )}
         </div>
       </header>
 
