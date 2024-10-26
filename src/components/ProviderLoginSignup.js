@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { auth, db } from '../firebaseConfig'; // Adjust the import path if necessary
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate
 import './LoginSignup.css';
 
 const ProviderLoginSignup = () => {
@@ -81,6 +81,18 @@ const ProviderLoginSignup = () => {
   };
 
   return (
+
+    <>
+    <header className="header">
+      <div className="logo-container">
+        <span className="logo-text">Home Revive</span>
+      </div>
+      <div className="nav">
+        <div className="nav-item" onClick={() => navigate('/')}>Home</div>
+        <div className="nav-item" onClick={() => navigate('/support')}>Support</div>
+      </div>
+    </header>
+
     <div className="form-container">
       <h1>{isLogin ? "Provider Login" : "Provider Signup"}</h1>
       <form onSubmit={handleSubmit}>
@@ -119,6 +131,16 @@ const ProviderLoginSignup = () => {
         {isLogin ? "Don't have an account? Signup" : "Already have an account? Login"}
       </button>
     </div>
+
+    <footer className="footer">
+        <div className="footer-links">
+          <Link to="/FAQsCustomers">FAQs for Customers</Link>
+          <Link to="/FAQsProviders">FAQs for Providers</Link>
+          <Link to="/terms">Terms of Service</Link>
+          <Link to="/privacy">Privacy Policy</Link>
+        </div>
+      </footer>
+    </>
   );
 };
 
