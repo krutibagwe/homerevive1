@@ -112,12 +112,15 @@
 
 
 // src/components/BookProfessional.js
+
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { auth } from '../firebaseConfig'; // Import Firebase auth
+import { useLocation, useNavigate } from 'react-router-dom';
+import { auth, db } from '../firebaseConfig'; 
+import { collection, query, where, getDocs } from 'firebase/firestore'; 
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 import userProfile from '../assets/user-placeholder.png.webp';
 import './BookingPage.css';
+import { Link } from 'react-router-dom';
 
 const BookProfessional = () => {
     const location = useLocation();
@@ -128,13 +131,13 @@ const BookProfessional = () => {
 
     const [bookingDate, setBookingDate] = useState('');
     const [bookingTime, setBookingTime] = useState('');
-    const [pincode, setPincode] = useState(''); // New state for pincode
-    const [userUid, setUserUid] = useState(''); // New state for user UID
+    const [pincode, setPincode] = useState(''); 
+    const [userUid, setUserUid] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Get current user UID
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setUserUid(user.uid);
@@ -144,12 +147,41 @@ const BookProfessional = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleBooking = (e) => {
+    const handleBooking = async (e) => {
         e.preventDefault();
-        console.log(`Finding professionals in pincode ${pincode}`);
-    
-        // Navigate to AvailableProviders component, passing the pincode as state
-        navigate('/available-providers', { state: { pincode } });
+        console.log("Booking form submitted");
+        console.log("Selected service:", mainService.title);
+        console.log("Entered pincode:", pincode);
+
+        try {
+            const professionalsRef = collection(db, 'providers');
+            const q = query(
+                professionalsRef,
+                where('services', '==', mainService.title),
+                where('pincode', '==', pincode)
+            );
+
+            const querySnapshot = await getDocs(q);
+            const fetchedProfessionals = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            console.log("Fetched professionals:", fetchedProfessionals);
+
+            // Navigate regardless of the results
+            navigate('/available-providers', { 
+                state: { 
+                    pincode, 
+                    service: mainService.title, 
+                    providers: fetchedProfessionals // Pass the providers array
+                } 
+            });
+            console.log("Navigating to available providers");
+
+        } catch (error) {
+            console.error("Error fetching professionals: ", error);
+        }
     };
     
     const generateTimeOptions = () => {
@@ -163,7 +195,7 @@ const BookProfessional = () => {
 
     const toggleProfileDropdown = () => setShowDropdown((prev) => !prev);
     const handleLogoutClick = () => {
-        navigate('/'); // Navigate to home on logout
+        navigate('/'); 
     };
 
     return (
@@ -196,6 +228,12 @@ const BookProfessional = () => {
                 <main className="booking-content">
                     <h1>Book a Professional</h1>
                     <h3>{mainService.title} - {selectedService.title}</h3>
+                    
+                    <div className="info-display">
+                        <p><strong>Service:</strong> {mainService.title}</p>
+                        <p><strong>Pincode:</strong> {pincode}</p>
+                    </div>
+
                     <form onSubmit={handleBooking} className="booking-form">
                         <div className="form-group">
                             <label htmlFor="date">Select Date:</label>
@@ -234,18 +272,19 @@ const BookProfessional = () => {
                 </main>
             </div>
             <footer className="footer">
-            <div className="footer-links">
-                <Link to="/FAQsCustomers">FAQs for Customers</Link>
-                <Link to="/FAQsProviders">FAQs for Providers</Link>
-                <Link to="/terms">Terms of Service</Link>
-                <Link to="/privacy">Privacy Policy</Link>
-            </div>
+                <div className="footer-links">
+                    <Link to="/FAQsCustomers">FAQs for Customers</Link>
+                    <Link to="/FAQsProviders">FAQs for Providers</Link>
+                    <Link to="/terms">Terms of Service</Link>
+                    <Link to="/privacy">Privacy Policy</Link>
+                </div>
             </footer>
         </>
     );
 };
 
 export default BookProfessional;
+
 
 // // src/components/BookProfessional.js
 // import React, { useState, useEffect } from 'react';
