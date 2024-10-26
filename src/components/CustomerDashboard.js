@@ -411,7 +411,7 @@ const CustomerDashboard = () => {
                 className="book-professional-button" 
                 onClick={() => handleBookProfessional(subService)} // Pass sub-service object
                 >
-                Book Professional
+                Find Professional
                 </button>
 
                 </div>
