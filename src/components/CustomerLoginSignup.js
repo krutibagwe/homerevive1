@@ -122,6 +122,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate
 import './LoginSignup.css';
+import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 
 const CustomerLoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -155,7 +156,8 @@ const CustomerLoginSignup = () => {
         // Redirect to Customer Home after login
         navigate('/customer-home');
       } catch (error) {
-        setError('Error logging in: ' + error.message);
+        //setError('Error logging in: ' + error.message);
+        setError('Error logging in: Incorrect email or password.');
       }
     } else {
       try {
@@ -197,15 +199,21 @@ const CustomerLoginSignup = () => {
   return (
 
     <>
-    <header className="header">
-      <div className="logo-container">
-        <span className="logo-text">Home Revive</span>
-      </div>
-      <div className="nav">
-        <div className="nav-item" onClick={() => navigate('/')}>Home</div>
-        <div className="nav-item" onClick={() => navigate('/support')}>Support</div>
-      </div>
-    </header>
+      <header className="navbar">
+        <div className="logo-container">
+          <img src={homeReviveLogo} alt="Home Revive Logo" className="logo large" />
+          <div className="description">
+            <h1>Home Revive</h1>
+            <p>Connecting Local Professionals with Customers for Fast and Reliable Home Repairs</p>
+          </div>
+        </div>
+        <nav>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/contact" className="nav-link">Contact Us</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
+          {/* <Link to="/login-signup" className="nav-link">Login/Signup</Link> */}
+        </nav>
+      </header>
 
     <div className="form-container">
       <h1>{isLogin ? "Customer Login" : "Customer Signup"}</h1>
