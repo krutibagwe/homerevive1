@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './RoleSelection.css';
 import userProfile from '../assets/user-placeholder.png.webp'; // Update the path as necessary
 import { auth } from '../firebaseConfig'; // Import auth from Firebase
+import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 
 const RoleSelection = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -16,14 +17,20 @@ const RoleSelection = () => {
 
   return (
     <>
-      <header className="header">
+      <header className="navbar">
         <div className="logo-container">
-          <span className="logo-text">Home Revive</span>
+          <img src={homeReviveLogo} alt="Home Revive Logo" className="logo large" />
+          <div className="description">
+            <h1>Home Revive</h1>
+            <p>Connecting Local Professionals with Customers for Fast and Reliable Home Repairs</p>
+          </div>
         </div>
-        <div className="nav">
-          <div className="nav-item" onClick={() => navigate('/')}>Home</div>
-          <div className="nav-item" onClick={() => navigate('/support')}>Support</div>
-        </div>
+        <nav>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/contact" className="nav-link">Contact Us</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
+          <Link to="/login-signup" className="nav-link">Login/Signup</Link>
+        </nav>
       </header>
 
       <div className="form-container">

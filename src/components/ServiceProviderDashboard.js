@@ -341,7 +341,7 @@ const ServiceProviderDashboard = () => {
       { id: 1, title: 'Earnings', subServices: [] },
       { id: 2, title: 'Past Work', subServices: [] },
       { id: 3, title: 'Upcoming Work', subServices: [] },
-      { id: 4, title: 'New Request', subServices: [] },
+      // { id: 4, title: 'New Request', subServices: [] },
     ];
     setServices(dummyServices);
   }, []);
@@ -439,7 +439,8 @@ const ServiceProviderDashboard = () => {
       </header>
 
       <div className="service-selection-buttons">
-        <h2>Your Jobs {providerID && ` (User ID: ${providerID}, Pincode: ${accountHolder?.pincode || 'N/A'})`}</h2>
+      <h1 align = "center">Welcome to Home Revive</h1>
+        {/* <h2>Your Jobs {providerID && ` (User ID: ${providerID}, Pincode: ${accountHolder?.pincode || 'N/A'})`}</h2> */}
         <div className="services-buttons">
           {services.map((service) => (
             <div key={service.id} className="service-card">
