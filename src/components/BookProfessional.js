@@ -112,11 +112,10 @@
 
 
 // src/components/BookProfessional.js
-
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebaseConfig'; 
-import { collection, query, where, getDocs } from 'firebase/firestore'; 
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore'; 
 import homeReviveLogo from '../assets/home-revive-logo.png.webp';
 import userProfile from '../assets/user-placeholder.png.webp';
 import './BookingPage.css';
@@ -150,10 +149,29 @@ const BookProfessional = () => {
     const handleBooking = async (e) => {
         e.preventDefault();
         console.log("Booking form submitted");
-        console.log("Selected service:", mainService.title);
-        console.log("Entered pincode:", pincode);
+
+        // Ensure date and time are selected
+        if (!bookingDate || !bookingTime) {
+            console.error("Booking date or time is missing.");
+            return;
+        }
 
         try {
+            const bookingData = {
+                serviceId: selectedService.id,
+                serviceTitle: mainService.title,
+                subServiceTitle: selectedService.title,
+                bookingDate, // Ensure this is set
+                bookingTime,  // Ensure this is set
+                pincode,
+                userUid,
+                timestamp: new Date(),
+            };
+
+            // Store booking data in Firestore
+            await addDoc(collection(db, 'bookings'), bookingData);
+            console.log("Booking saved:", bookingData);
+
             const professionalsRef = collection(db, 'providers');
             const q = query(
                 professionalsRef,
@@ -169,20 +187,26 @@ const BookProfessional = () => {
 
             console.log("Fetched professionals:", fetchedProfessionals);
 
-            // Navigate regardless of the results
+            // Navigate with booking date and time included
             navigate('/available-providers', { 
                 state: { 
                     pincode, 
                     service: mainService.title, 
-                    providers: fetchedProfessionals // Pass the providers array
+                    providers: fetchedProfessionals, 
+                    bookingDate, 
+                    bookingTime // Pass the booking date and time
                 } 
             });
             console.log("Navigating to available providers");
 
         } catch (error) {
-            console.error("Error fetching professionals: ", error);
+            console.error("Error processing booking: ", error);
         }
     };
+
+    // Rest of the component remains the same...
+
+
     
     const generateTimeOptions = () => {
         const options = [];
@@ -284,7 +308,6 @@ const BookProfessional = () => {
 };
 
 export default BookProfessional;
-
 
 // // src/components/BookProfessional.js
 // import React, { useState, useEffect } from 'react';

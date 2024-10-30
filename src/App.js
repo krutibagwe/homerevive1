@@ -24,6 +24,7 @@ import ContactUs from './components/ContactUs';
 import AboutUs from './components/AboutUs';
 import BookingSummary from './components/BookingSummary';
 import AvailableProviders from './components/AvailableProviders';
+import AppointmentConfirmation from './components/AppointmentConfirm';
 
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
         <Route path="/About" element={<AboutUs />} />
         <Route path="/booking-summary" element={<BookingSummary />} />
         <Route path="/available-providers" element={<AvailableProviders />} />
+        <Route path="/appointment-confirmation" element={<AppointmentConfirmation />} />
+
       </Routes>
     </Router>
   );
